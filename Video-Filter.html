@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Knockout</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+
+<div id="page-container">
+<h1 id="head1">Knockout JS </h1>
+
+<div class="row">
+
+<div class="large-3 columns">
+<p>Filter the Video List:</p>
+</div>
+
+<div class="large-3 columns">
+<p><a class="small-button" data-bind="click: showCATS, text: CATSValue">Show Only the Cats</a></p>
+</div>
+
+<div class="large-3 columns">
+<p><a class="small-button" data-bind="click: showDOGS, text: DOGSValue">Show Only the Dogs<a></p>
+</div>
+
+<div class="large-3 columns">
+<p><a class="small-button" data-bind="click: showBIRDS, text: BIRDSValue">Show Only the Birds</a></p>
+</div>
+
+
+<div class="large-3 columns">
+<p><a class="small-button-reset"data-bind="click: resetList">Reset the List</a></p>
+</div>
+
+</div>
+
+
+<div class="row">
+<div class="large-12 columns">
+<div data-bind="visible: showtheCATS" class="panel">
+<h2>CAT Video</h2><iframe width="560" height="315" src="https://www.youtube.com/embed/2l_PmSOreGc" frameborder="0" allowfullscreen></iframe>
+
+</div>
+<div class="large-12 columns">
+<div data-bind="visible: showtheDOGS" class="panel">
+<h2>DOG Video</h2><iframe width="560" height="315" src="https://www.youtube.com/embed/CpbYBZKdi3s" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+<div class="large-12 columns">
+<div data-bind="visible: showtheBIRDS" class="panel">
+<h2>BIRD Video</h2><iframe width="560" height="315" src="https://www.youtube.com/embed/VBv_pI8oxLc" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+<div class="large-12 columns">
+<div data-bind="visible: showtheBIRDS" class="panel">
+<h2>BIRD Video</h2><iframe width="420" height="315" src="https://www.youtube.com/embed/9gk9WEGuIRI" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+
+
+<script type="text/javascript">
+
+var viewModel =
+
+{
+
+showtheCATS: ko.observable(true),	
+showtheDOGS: ko.observable(true),	
+showtheBIRDS: ko.observable(true),
+CATSValue: ko.observable("Show CATS"),
+DOGSValue: ko.observable("Show DOGS"),
+BIRDSValue: ko.observable("Show BIRDS"),
+
+showCATS: function () {
+	viewModel.showtheDOGS(false);
+	viewModel.showtheCATS(true);
+	viewModel.showtheBIRDS(false);
+	viewModel.CATSValue("CAT Vids only listed");
+
+},
+
+showDOGS: function () {
+	viewModel.showtheCATS(false);
+	viewModel.showtheDOGS(true);
+	viewModel.showtheBIRDS(false);
+	viewModel.DOGSValue("DOG Vids only listed");
+
+},
+
+showBIRDS: function () {
+	viewModel.showtheCATS(false);
+	viewModel.showtheDOGS(false);
+	viewModel.showtheBIRDS(true);
+	viewModel.BIRDSValue("BIRD Vids only listed");
+
+},
+
+//reset the Video List
+resetList: function () {
+	viewModel.showtheCATS(true);
+	viewModel.showtheDOGS(true);
+	viewModel.showtheBIRDS(true);
+	viewModel.CATSValue("CATS Vids only listed");
+	viewModel.DOGSValue("DOGS Vids only listed");
+	viewModel.BIRDSValue("BIRDS Vids only listed");
+
+
+}
+
+	
+};
+
+//Activate the knockout binding
+ko.applyBindings(viewModel, document.getElementById("page-container"));
+
+</script>
+
+
+</body>
+</html>
